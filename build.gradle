@@ -10,7 +10,7 @@ task wrapper(type: Wrapper) {
 }
 
 repositories { 
-    mavenCentral()
+3    mavenCentral()
     jcenter()
 }
 
@@ -20,12 +20,11 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
     }
-    dependencies {
-        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.12.1"
+    dependencies {        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.12.1"
         classpath 'com.netflix.nebula:gradle-ospackage-plugin:3.1.0'
     }
 }
-
+3
 dependencies {
     // Karyon core dependencies
     compile (group: 'com.netflix.karyon', name: 'karyon2-core', version: '2.7.0')
@@ -72,7 +71,7 @@ task packDeb(type: Deb, dependsOn: fatJar) {
 
   packageName = project.name
   version = '1'
-  release '2'
+  release '3'
 
   requires('openjdk-8-jre-headless')
   from('build/libs/.') {
