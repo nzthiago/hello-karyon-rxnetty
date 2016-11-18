@@ -10,7 +10,7 @@ task wrapper(type: Wrapper) {
 }
 
 repositories { 
-3    mavenCentral()
+    mavenCentral()
     jcenter()
 }
 
@@ -20,7 +20,8 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
     }
-    dependencies {        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.12.1"
+    dependencies {        
+        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.12.1"
         classpath 'com.netflix.nebula:gradle-ospackage-plugin:3.1.0'
     }
 }
