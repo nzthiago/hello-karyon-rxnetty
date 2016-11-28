@@ -20,6 +20,8 @@ import io.reactivex.netty.protocol.http.server.HttpServerRequest;
 import io.reactivex.netty.protocol.http.server.HttpServerResponse;
 import io.reactivex.netty.protocol.http.server.RequestHandler;
 import netflix.karyon.transport.http.SimpleUriRouter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import rx.Observable;
 import rx.functions.Func1;
 
@@ -30,6 +32,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
 
     private final SimpleUriRouter<ByteBuf, ByteBuf> delegate;
     private final HelloEndpoint endpoint;
+    private static final Logger logger = LoggerFactory.getLogger(IndexResource.class); 
 
     public static String execCmd(String cmd) throws java.io.IOException {
         java.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(cmd).getInputStream()).useDelimiter("\\A");
@@ -53,8 +56,12 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         String userdata = "";
 
                         try{
-                            instanceId = execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
+                            //instanceId = execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
                             userdata = System.getenv("USERDATA");
+                            if (userdata == null) {
+                                userdata = "See log file";
+                                logger.info("User Data not found. \nCurrent Environment Variables: {}", System.getenv());
+                            }
 
                         } catch (Exception e){
                             e.printStackTrace();
