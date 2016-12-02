@@ -6,7 +6,7 @@ apply plugin: 'nebula.ospackage-base'
 sourceCompatibility = 1.7
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
+    gradleVersion = '3.2.1'
 }
 
 repositories { 
